@@ -8,6 +8,19 @@
             <h5 class="text-center">Project Management System</h5>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+              {{-- upload success alert --}}
+            @if(session("account-success"))
+            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+                {{ session('account-success')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        </div>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card">
@@ -56,7 +69,7 @@
                             </div>
                         </div>
 
-                        <div class="row mb-0">
+                        <div class="row mb-2">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
@@ -69,7 +82,15 @@
                                 @endif
                             </div>
                         </div>
+                       
                     </form>
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-4">
+                            <span class="text-muted">you have no account register <a href="{{route('employee.create')}}">here</a></span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

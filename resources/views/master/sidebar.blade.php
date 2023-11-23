@@ -32,7 +32,33 @@
               </p>
             </a>
           </li> --}}
-         
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon bi bi-building-gear"></i>
+              <p>
+                Employee Management
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                @can('department-list')
+                  <a href="{{route('department.index')}}" class="nav-link">
+                    <i class="bi bi-buildings nav-icon"></i>
+                    <p>department</p>
+                  </a>
+                @endcan  
+              </li>
+              <li class="nav-item">
+                @can('employee-list')
+                  <a href="{{route('employee.index')}}" class="nav-link">
+                    <i class="fa fa-users nav-icon" aria-hidden="true"></i>
+                    <p>employee</p>
+                  </a>
+                @endcan  
+              </li>
+            </ul>
+          </li>  
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-cogs" aria-hidden="true"></i>
@@ -45,7 +71,7 @@
               <li class="nav-item">
                 @can('user-list')
                   <a href="{{route('users.index')}}" class="nav-link">
-                    <i class="fa fa-users nav-icon" aria-hidden="true"></i>
+                    <i class="bi bi-people nav-icon"></i>
                     <p>users</p>
                   </a>
                 @endcan
@@ -68,33 +94,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-cogs" aria-hidden="true"></i>
-              <p>
-                Employee Management
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                @can('user-list')
-                  <a href="{{route('departments.index')}}" class="nav-link">
-                    <i class="fa fa-users nav-icon" aria-hidden="true"></i>
-                    <p>department</p>
-                  </a>
-                @endcan
-              </li>
-              <li class="nav-item">
-                @can('user-list')
-                  <a href="{{route('employees.index')}}" class="nav-link">
-                    <i class="fa fa-users nav-icon" aria-hidden="true"></i>
-                    <p>employee</p>
-                  </a>
-                @endcan
-              </li>
-            </ul>
-          </li>  
+         
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

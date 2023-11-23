@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="d-flex flex-row-reverse">
-    <a href="{{route('role.index')}}" class="btn btn-sm btn-success my-3">back</a>
+    <a href="{{route('role.index')}}" class="btn btn-sm btn-success my-3"><i class="bi bi-chevron-left"></i>back</a>
 </div>
 
  {{-- validation error --}}

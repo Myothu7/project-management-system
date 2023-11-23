@@ -10,7 +10,9 @@
           <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    @yield('content')
+                    {{-- <div class="card"> --}}
+                      @yield('content')
+                    {{-- </div> --}}
                 </div>
             </div>
           </div>

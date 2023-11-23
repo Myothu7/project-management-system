@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <div class="d-flex flex-row-reverse">
-        <a href="{{route('permissions.index')}}" class="btn btn-sm btn-success my-3">back</a>
+        <a href="{{route('permissions.index')}}" class="btn btn-sm btn-success my-3"><i class="bi bi-chevron-left"></i>back</a>
     </div>
 
     <div class="card mt-2">

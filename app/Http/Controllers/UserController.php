@@ -25,7 +25,7 @@ class UserController extends Controller
     }
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::where('user_type','=','admin')->paginate(10);
         return view('user.index',compact('users'));
     }
    
@@ -39,6 +39,7 @@ class UserController extends Controller
     {
         $input_data = $request->all();
         $input_data['password'] = Hash::make($request->password);
+        // dd($input_data);
         $users = User::create($input_data);
         $users->assignRole($request->role);
 

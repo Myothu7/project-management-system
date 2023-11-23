@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-12">
         <div class="d-flex flex-row-reverse">
-            <a href="{{route('users.index')}}" class="btn btn-sm btn-success my-3">Back</a>
+            <a href="{{route('users.index')}}" class="btn btn-sm btn-success my-3"><i class="bi bi-chevron-left"></i>Back</a>
         </div>
          {{-- validation error --}}
         @if ($errors->any())

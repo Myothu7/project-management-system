@@ -4,14 +4,14 @@
 @endsection
 @section('content')
     <div class="d-flex flex-row-reverse">
-        @can('user-create')
-            <a href="{{route('users.create')}}" class="btn btn-sm btn-success mt-3"><i class="bi bi-plus"></i>Add User</a>
+        @can('employee-create')
+            <a href="{{route('employee.create')}}" class="btn btn-sm btn-success mt-3"><i class="bi bi-plus"></i>Add Employee</a>
         @endcan    
     </div>
      {{-- upload success alert --}}
-    @if(session("upload-success"))
+    @if(session("account-success"))
         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-            {{ session('upload-success')}}
+            {{ session('account-success')}}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -40,17 +40,19 @@
 
     <div class="card mt-3">
         <div class="card-header">
-            <h5>All Users</h5>
+            <h5>All Employees</h5>
         </div>
         <div class="card-body">
-            {{-- {{ $users->links() }} --}}
+            {{-- {{ $employees->links() }} --}}
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Role</th>
+                        <th>Position</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -60,24 +62,20 @@
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            @foreach ($user->getRoleNames() as $role)
-                                <td>{{$role}}</td>
-                            @endforeach
+                            <td>{{$user->employee->role}}</td>
+                            <td>{{$user->employee->address}}</td>
+                            <td>{{$user->employee->ph_number}}</td>
                             <td>
                                 <div class="btn-group" >
-                                    @can('user-detail')
-                                        <a href="{{route('users.show', $user->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye-slash"></i></a>
-                                    @endcan
-                                    @can('user-edit')
-                                        <a href="{{route('users.edit', $user->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square text-success"></i></a>
-                                    @endcan
-                                    @can('user-delete')    
-                                        <form action="{{url('users',$user->id)}}" method="post" class="btn btn-sm btn-outline-primary">
+                                        <a href="{{route('employee.show', $user->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye-slash"></i></a>
+                                   
+                                        <a href="{{route('employee.edit', $user->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square text-success"></i></a>
+                                      
+                                        <form action="{{url('employee',$user->id)}}" method="post" class="btn btn-sm btn-outline-primary">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" onclick="return confirm('Are you sure you want to delete this item?')" class="border-0 p-0" style="background-color: transparent;"><i class="bi bi-trash text-danger"></i></button>
-                                        </form>  
-                                    @endcan    
+                                        </form>    
                                 </div>
                             </td>
                            

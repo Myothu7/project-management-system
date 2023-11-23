@@ -54,9 +54,9 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        {{-- @can('role-edit','role-delete') --}}
+                        @if(Auth::user()->roles[0]->name == "Super admin")
                             <th>Action</th>
-                        {{-- @endcan --}}
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -64,20 +64,22 @@
                         <tr>
                             <td>{{$role->id}}</td>
                             <td>{{$role->name}}</td>
-                            <td>
-                                <div class="btn-group" >
-                                    @can('role-edit')
-                                        <a href="{{route('role.edit', $role->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square text-success"></i></a>
-                                    @endcan
-                                    @can('role-delete')
-                                        <form action="{{url('role',$role->id)}}" method="post" class="btn btn-sm btn-outline-primary">
-                                            @csrf
-                                            @method('delete')
-                                            <button type="submit" onclick="return confirm('Are you sure you want to delete this item?')" class="border-0 p-0" style="background-color: transparent;"><i class="bi bi-trash text-danger"></i></button>
-                                        </form> 
-                                    @endcan
-                                </div>
-                            </td>
+                            @if(Auth::user()->roles[0]->name == "Super admin")
+                                <td>
+                                    <div class="btn-group" >
+                                        @can('role-edit')
+                                            <a href="{{route('role.edit', $role->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square text-success"></i></a>
+                                        @endcan
+                                        @can('role-delete')
+                                            <form action="{{url('role',$role->id)}}" method="post" class="btn btn-sm btn-outline-primary">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" onclick="return confirm('Are you sure you want to delete this item?')" class="border-0 p-0" style="background-color: transparent;"><i class="bi bi-trash text-danger"></i></button>
+                                            </form> 
+                                        @endcan
+                                    </div>
+                                </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

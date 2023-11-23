@@ -18,19 +18,19 @@ class UserSeeder extends Seeder
 
         $user = User::create([
             'name'=>'alice','email'=>'alice@gmail.com',
-            'password'=>'pass',
+            'password'=>'pass','user_type'=>'admin'
         ]);
         $user->assignRole('member');
 
         $user = User::create([
             'name'=>'admin','email'=>'admin@gmail.com',
-            'password'=>'pass',
+            'password'=>'pass', 'user_type'=>'admin'
         ]);
-        $user->assignRole('admin');
+        $user->assignRole('Admin');
 
         $user = User::create([
             'name'=>'mmt','email'=>'mmt@gmail.com',
-            'password'=>'pass',
+            'password'=>'pass','user_type'=>'admin'
         ]);
         $user->assignRole('Super admin');
 

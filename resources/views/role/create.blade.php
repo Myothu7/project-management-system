@@ -9,23 +9,13 @@
     {{-- validation error --}}
     @if ($errors->any())
         <div class="alert alert-danger">
-            <ul>
+            <ul class="">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
     @endif
-
-     {{-- upload success alert --}}
-     @if(session("upload-success"))
-     <div class="alert alert-success alert-dismissible fade show" role="alert">
-         {{ session('upload-success')}}
-         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-         <span aria-hidden="true">&times;</span>
-         </button>
-     </div>
-     @endif
 
     <div class="card mt-2">
         <div class="card-header">

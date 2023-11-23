@@ -8,7 +8,7 @@
 
     <div class="d-flex flex-row-reverse">
         @can('role-create')
-            <a href="{{route('role.create')}}" class="btn btn-sm btn-success mt-3"><i class="bi bi-plus"></i>Add New</a>
+            <a href="{{route('permissions.create')}}" class="btn btn-sm btn-success mt-3"><i class="bi bi-plus"></i>Add New</a>
         @endcan
     </div>
 
@@ -22,7 +22,7 @@
         </div>
     @endif
 
-     {{-- update success alert --}}
+     {{-- upload success alert --}}
     @if(session("update-success"))
         <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
             {{ session('update-success')}}
@@ -45,7 +45,7 @@
     <div class="card mt-3">
         <div class="card-header">
             <div class="card-title">
-                <h5>All Roles</h5>
+                <h5>All Permissions</h5>
             </div>
         </div>
         <div class="card-body">
@@ -54,33 +54,33 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        {{-- @can('role-edit','role-delete') --}}
-                            <th>Action</th>
-                        {{-- @endcan --}}
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($roles as $role)
+                    @foreach ($permissions as $permission)
                         <tr>
-                            <td>{{$role->id}}</td>
-                            <td>{{$role->name}}</td>
+                            <td>{{$permission->id}}</td>
+                            <td>{{$permission->name}}</td>
                             <td>
                                 <div class="btn-group" >
-                                    @can('role-edit')
-                                        <a href="{{route('role.edit', $role->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square text-success"></i></a>
+                                    @can('permission-edit')
+                                        <a href="{{route('permissions.edit', $permission->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil-square text-success"></i></a>
                                     @endcan
-                                    @can('role-delete')
-                                        <form action="{{url('role',$role->id)}}" method="post" class="btn btn-sm btn-outline-primary">
+                                    @can('permission-delete')
+                                        <form action="{{url('permissions',$permission->id)}}" method="post" class="btn btn-sm btn-outline-primary">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" onclick="return confirm('Are you sure you want to delete this item?')" class="border-0 p-0" style="background-color: transparent;"><i class="bi bi-trash text-danger"></i></button>
                                         </form> 
                                     @endcan
-                                </div>
+                                </div> 
+                               
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
+                {{ $permissions->links() }}
             </table>
         </div>
     </div>

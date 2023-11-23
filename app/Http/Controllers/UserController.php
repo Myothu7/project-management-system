@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -12,11 +13,20 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     use HasRoles;
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:user-create', ['only' => ['create','store']]);
+        $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:user-detail', ['only' => ['show']]);
+    }
     public function index()
     {
-        $users = User::all();
-        $num = 1;
-        return view('user.index',compact('users','num'));
+        $users = User::paginate(10);
+        return view('user.index',compact('users'));
     }
    
     public function create()
@@ -25,20 +35,22 @@ class UserController extends Controller
         return view('user.create',compact('roles'));
     }
    
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $input_data = $request->all();
         $input_data['password'] = Hash::make($request->password);
         $users = User::create($input_data);
         $users->assignRole($request->role);
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')
+                         ->with('upload-success', 'Upload Successfully!');
 
     }
    
     public function show(string $id)
     {
-        //
+        $user = User::find($id);
+        return view('user.detail', compact('user'));
     }
    
     public function edit(string $id)
@@ -50,18 +62,26 @@ class UserController extends Controller
   
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'role' => 'required'
+        ]);
+
         $user = User::find($id);
         $user->update($request->all());
         DB::table('model_has_roles')->where('model_id',$id)->delete();
     
         $user->assignRole($request->role);
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')
+                         ->with('update-success', 'Update Successfully!');
     }
     
-    public function destroy(User $user)
-    {
+    public function destroy($id)
+    {  
+        $user = User::find($id);
         $user->delete();
-        return back();
+        return back()->with('delete-success', 'Delete Successfully!');
     }
 }

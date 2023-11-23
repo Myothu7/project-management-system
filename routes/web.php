@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\PermissionController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 
@@ -15,22 +17,6 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-
-Route::group(['middleware' => ['auth']], function() {
-    Route::resource('role',RoleController::class);
-    Route::resource('users',UserController::class);
-});
-
-
-Route::get('ui',function(){
-    return view('master.app');
-});
+Route::resource('role', RoleController::class);
+Route::resource('users', UserController::class);
+Route::resource('permissions', PermissionController::class);

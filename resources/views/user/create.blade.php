@@ -18,15 +18,7 @@
                 </ul>
             </div>
         @endif
-         {{-- upload success alert --}}
-         @if(session("store-success"))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('store-success')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-         @endif
+       
         <div class="card">
             <div class="card-header">
                 <h4>Add User</h4>
@@ -47,7 +39,7 @@
                     <div class="mb-3 d-lg-flex col-12">
                         <div class="mb-3 col-lg-6">
                                 <label for="">Role</label>
-                                <select name="role" id="" class="form-control">
+                                <select name="role" id="" class="form-control" required>
                                     <option value="" hidden>--select option--</option>
                                     @foreach ($roles as $key => $role)
                                         <option value="{{$role}}">{{$role}}</option>

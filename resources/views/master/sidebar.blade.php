@@ -1,9 +1,9 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{url('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <a href="" class="brand-link">
+      <img src="{{url('dist/img/umg.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Project Management</span>
     </a>
 
     <!-- Sidebar -->
@@ -14,7 +14,7 @@
           <img src="{{url('dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{Auth::user()->name}}</a>
         </div>
       </div>
 
@@ -43,19 +43,58 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('users.index')}}" class="nav-link">
-                  <i class="fa fa-users nav-icon" aria-hidden="true"></i>
-                  <p>users</p>
-                </a>
+                @can('user-list')
+                  <a href="{{route('users.index')}}" class="nav-link">
+                    <i class="fa fa-users nav-icon" aria-hidden="true"></i>
+                    <p>users</p>
+                  </a>
+                @endcan
               </li>
               <li class="nav-item">
-                <a href="{{route('role.index')}}" class="nav-link">
-                  <i class="fa fa-th-list nav-icon" aria-hidden="true"></i>
-                  <p>roles</p>
-                </a>
+                @can('role-list')
+                  <a href="{{route('role.index')}}" class="nav-link">
+                    <i class="fa fa-th-list nav-icon" aria-hidden="true"></i>
+                    <p>roles</p>
+                  </a>
+                @endcan
+              </li>
+              <li class="nav-item">
+                @can('permission-list')
+                  <a href="{{route('permissions.index')}}" class="nav-link">
+                    <i class="fa fa-gavel nav-icon" aria-hidden="true"></i>
+                    <p>permissions</p>
+                  </a>
+                @endcan
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-cogs" aria-hidden="true"></i>
+              <p>
+                Employee Management
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                @can('user-list')
+                  <a href="{{route('departments.index')}}" class="nav-link">
+                    <i class="fa fa-users nav-icon" aria-hidden="true"></i>
+                    <p>department</p>
+                  </a>
+                @endcan
+              </li>
+              <li class="nav-item">
+                @can('user-list')
+                  <a href="{{route('employees.index')}}" class="nav-link">
+                    <i class="fa fa-users nav-icon" aria-hidden="true"></i>
+                    <p>employee</p>
+                  </a>
+                @endcan
+              </li>
+            </ul>
+          </li>  
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

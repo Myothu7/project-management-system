@@ -36,7 +36,7 @@
                 </div>
                 <div class="mb-3">
                         <label for="">Role</label>
-                        <select name="role" id="" class="form-control">
+                        <select name="role" id="" class="form-control" required>
                             @foreach ($roles as $role)
                                 @foreach ($user->getRoleNames() as $old_role)
                                     <option value="{{$old_role}}" selected hidden>{{$old_role}}</option>

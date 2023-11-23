@@ -2,20 +2,23 @@
 @section('title')
     edit role
 @endsection
+
 @section('content')
 <div class="d-flex flex-row-reverse">
     <a href="{{route('role.index')}}" class="btn btn-sm btn-success my-3">back</a>
 </div>
+
  {{-- validation error --}}
- @if ($errors->any())
- <div class="alert alert-danger">
-     <ul>
-         @foreach ($errors->all() as $error)
-             <li>{{ $error }}</li>
-         @endforeach
-     </ul>
- </div>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
 @endif
+
 <div class="card mt-2">
     <div class="card-header">
         <h5>Add Role</h5>

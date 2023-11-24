@@ -3,10 +3,17 @@
     edit|user
 @endsection
 @section('content')
-    <div class="d-flex flex-row-reverse">
-        @can('user-create')
-            <a href="{{route('users.create')}}" class="btn btn-sm btn-success mt-3"><i class="bi bi-plus"></i>Add User</a>
-        @endcan    
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <form class="d-flex" method="get">
+                <input type="search" class="form-control-sm search" placeholder="Search..." name="search_data">
+                <input type="submit" value="Search" class="btn btn-sm btn-primary ml-2">
+                <a href="{{route('employee.index')}}" class="btn btn-sm btn-default ml-2"><i class="bi bi-arrow-repeat"></i></a>
+            </form>
+            @can('user-create')
+                <a href="{{route('users.create')}}" class="btn btn-sm btn-success"><i class="bi bi-plus"></i>Add User</a>
+            @endcan   
+        </div>
     </div>
      {{-- upload success alert --}}
     @if(session("upload-success"))

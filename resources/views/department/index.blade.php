@@ -1,18 +1,20 @@
 @extends('master.app')
 
 @section('content')
-    <div class="d-flex flex-row-reverse">
-        @can('department-create')
-            <a href="{{route('department.create')}}" class="btn btn-sm btn-success mt-3"><i class="bi bi-plus"></i>Add New</a>
-        @endcan
+
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <form class="d-flex" method="get">
+                <input type="search" class="form-control-sm search" placeholder="Search..." name="search_data">
+                <input type="submit" value="Search" class="btn btn-sm btn-primary ml-2">
+                <a href="{{route('department.index')}}" class="btn btn-sm btn-default ml-2"><i class="bi bi-arrow-repeat"></i></a>
+            </form>
+            @can('department-create')
+                <a href="{{route('department.create')}}" class="btn btn-sm btn-success"><i class="bi bi-plus"></i>Add New</a>
+            @endcan
+        </div>
     </div>
-    {{-- <div class="col-lg-6 col-12">
-        <form class="d-flex mb-3" method="get">
-            <input type="search" class="form-control-sm search" placeholder="Search Name" name="name">
-            <input type="submit" value="Search" class="btn btn-sm btn-primary ml-2">
-            <a href="{{route('department.index')}}" class="btn btn-sm btn-default ml-2"><i class="bi bi-arrow-repeat"></i></a>
-        </form>
-    </div> --}}
+    
     <div class="col-12">
           {{-- department upload success alert --}}
         @if(session("upload_success"))
@@ -60,7 +62,7 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th>ID</th>
                             <th>Name</th>
                             <th>Remark</th>
                             <th>Action</th>

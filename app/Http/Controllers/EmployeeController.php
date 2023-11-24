@@ -20,9 +20,13 @@ class EmployeeController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
-    {
+    public function index(Request $request)
+    {   
         $users = User::where('user_type','=','employee')->get();
+        if($request->search_data){
+            $users = User::filter($request->search_data);
+            // return $users;
+        }
         return view('employee.index',compact('users'));
     }
    
@@ -56,6 +60,7 @@ class EmployeeController extends Controller
     {
         $user = User::find($id);
         $de_id = $user->employee->department_id;
+        // dd($de_id);
         $department = Department::where('id',$de_id)->get('name');
         return view('employee.detail', compact('user', 'department'));
     }

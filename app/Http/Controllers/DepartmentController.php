@@ -10,9 +10,12 @@ class DepartmentController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index(Request $request)
     {   
         $departments = Department::all();
+        if($request->search_data){
+            $departments = Department::filter($request->search_data);
+        }
         return view("department.index", compact("departments"));
     }
     public function create()

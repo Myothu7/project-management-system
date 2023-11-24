@@ -3,10 +3,17 @@
     edit|user
 @endsection
 @section('content')
-    <div class="d-flex flex-row-reverse">
-        @can('employee-create')
-            <a href="{{route('employee.create')}}" class="btn btn-sm btn-success mt-3"><i class="bi bi-plus"></i>Add Employee</a>
-        @endcan    
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mt-3">
+            <form class="d-flex" method="get">
+                <input type="search" class="form-control-sm search" placeholder="Search..." name="search_data">
+                <input type="submit" value="Search" class="btn btn-sm btn-primary ml-2">
+                <a href="{{route('employee.index')}}" class="btn btn-sm btn-default ml-2"><i class="bi bi-arrow-repeat"></i></a>
+            </form>
+            @can('employee-create')
+            <a href="{{route('employee.create')}}" class="btn btn-sm btn-success"><i class="bi bi-plus"></i>Add Employee</a>
+        @endcan 
+        </div>
     </div>
      {{-- upload success alert --}}
     @if(session("account-success"))
@@ -62,9 +69,15 @@
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>{{$user->employee->role}}</td>
-                            <td>{{$user->employee->address}}</td>
-                            <td>{{$user->employee->ph_number}}</td>
+                            <td>
+                                {{ isset($user->role) ? $user->role :$user->employee->role }}
+                            </td>
+                            <td>
+                                {{ isset($user->address) ? $user->address :$user->employee->address }}
+                            </td>
+                            <td>
+                                {{ isset($user->ph_number) ? $user->ph_number :$user->employee->ph_number }}
+                            </td>
                             <td>
                                 <div class="btn-group" >
                                         <a href="{{route('employee.show', $user->id)}}" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye-slash"></i></a>

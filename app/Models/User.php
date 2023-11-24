@@ -50,6 +50,15 @@ class User extends Authenticatable
     {
         return $this->hasOne(Employee::class);
     }
+
+    public static function user_filter($searchTerm)
+    {
+        $users = DB::table('users')->where('user_type','=','employee')
+                                    ->orWhere('name','like','%'.$searchTerm.'%')
+                                    ->orWhere('email','like','%'.$searchTerm.'%');
+
+        return $users->get();
+    }
     
     public static function filter($searchTerm)
     {

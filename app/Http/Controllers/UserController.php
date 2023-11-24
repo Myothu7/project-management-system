@@ -23,12 +23,22 @@ class UserController extends Controller
         $this->middleware('permission:user-delete', ['only' => ['destroy']]);
         $this->middleware('permission:user-detail', ['only' => ['show']]);
     }
-    public function index()
+    public function index(Request $request)
     {
         $users = User::where('user_type','=','admin')->paginate(10);
-        return view('user.index',compact('users'));
+
+        $position = [];
+        foreach($users as $user){
+            foreach($user->getRoleNames() as $role){
+                array_push( $position,$role);
+            }
+        }
+        if($request->search_data){
+           $users = User::user_filter($request->search_data);
+        }
+        return view('user.index',compact('users','position'));
     }
-   
+    
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
@@ -39,7 +49,6 @@ class UserController extends Controller
     {
         $input_data = $request->all();
         $input_data['password'] = Hash::make($request->password);
-        // dd($input_data);
         $users = User::create($input_data);
         $users->assignRole($request->role);
 

@@ -25,7 +25,6 @@ class EmployeeController extends Controller
         $users = User::where('user_type','=','employee')->get();
         if($request->search_data){
             $users = User::filter($request->search_data);
-            // return $users;
         }
         return view('employee.index',compact('users'));
     }

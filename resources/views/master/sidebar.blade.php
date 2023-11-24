@@ -34,6 +34,25 @@
           </li> --}}
           <li class="nav-item">
             <a href="#" class="nav-link">
+              <i class="bi bi-layout-text-window-reverse nav-icon"></i>
+              <p>
+                Project Management
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                @can('department-list')
+                  <a href="{{route('projects.index')}}" class="nav-link">
+                    <i class="bi bi-list-stars nav-icon"></i>
+                    <p>projects</p>
+                  </a>
+                @endcan  
+              </li>
+            </ul>
+          </li>  
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="nav-icon bi bi-building-gear"></i>
               <p>
                 Employee Management
@@ -53,7 +72,7 @@
                 @can('employee-list')
                   <a href="{{route('employee.index')}}" class="nav-link">
                     <i class="fa fa-users nav-icon" aria-hidden="true"></i>
-                    <p>employee</p>
+                    <p>employees</p>
                   </a>
                 @endcan  
               </li>

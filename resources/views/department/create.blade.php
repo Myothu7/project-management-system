@@ -1,5 +1,7 @@
 @extends('master.app')
-
+@section('title')
+    add | department
+@endsection
 @section('content')
     <div class="col-12">
         <div class="d-flex flex-row-reverse">

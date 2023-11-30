@@ -26,6 +26,7 @@ class EmployeeController extends Controller
         if($request->search_data){
             $users = User::filter($request->search_data);
         }
+        
         return view('employee.index',compact('users'));
     }
    
@@ -51,7 +52,7 @@ class EmployeeController extends Controller
                 'image' => $request->image
             ]); 
         }
-        return redirect()->route('employee.index')->with('account-success', 'Account Create Successfully!');
+        return redirect()->route('employee.index')->with('upload-success', 'Account Create Successfully!');
 
     }
    
@@ -96,6 +97,9 @@ class EmployeeController extends Controller
     public function destroy($id)
     {  
         $user = User::find($id);
+
+        return $user->employee;
+
         $user->delete();
         $employee = Employee::where('user_id','=',$id);
         $employee->delete();

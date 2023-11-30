@@ -1,6 +1,6 @@
 @extends('master.app')
 @section('title')
-    add|project
+    add | project
 @endsection
 @section('content')
 <div class="row">
@@ -32,26 +32,11 @@
                             <input type="text" name="name" class="form-control" required>
                         </div>
                         <div class="mb-3 col-lg-6">
-                            <label for="">Status</label>
-                            <select name="status" id="" class="form-control" required>
-                                    <option value="" hidden>--select option--</option>
-                                    <option value="1">To Do</option>
-                                    <option value="2">Progress</option>
-                                    <option value="3">Done</option>
-                            </select>
-                        </div> 
-                    </div>
-                    <div class="mb-3 d-lg-flex col-12">
-                        <div class="mb-3 col-lg-6">
-                            <label for="">Version</label>
-                            <input type="text" name="version" class="form-control" required>
-                        </div>
-                        <div class="mb-3 col-lg-6">
                             <label for="">Description</label>
                             <textarea name="description" id="" cols="30" rows="3" class="form-control" required></textarea>
                                   
                         </div>
-                    </div>    
+                    </div>
                        
                     <div class="mb-3 col-12 text-right">
                         <input type="submit" value="Create" class="btn btn-primary">

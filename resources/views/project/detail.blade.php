@@ -1,6 +1,6 @@
 @extends('master.app')
 @section('title')
-    add|project
+    detail | project
 @endsection
 @section('content')
 <div class="row">
@@ -27,8 +27,12 @@
                 <div class="mb-3 d-lg-flex col-12">
                     <div class="mb-3 col-lg-6">
                         <label for="">Version</label>
-                        <input type="text" value="{{$project->version}}" class="form-control" readonly>
-                    </div>
+                        <select name="" id="" class="form-control" multiple @readonly(true)>
+                            @foreach ($project->versions as $v)
+                                <option value="">v-{{$v->version_number}}</option>
+                            @endforeach
+                        </select>
+                    </div> 
                     <div class="mb-3 col-lg-6">
                         <label for="">Description</label>
                         <textarea id="" cols="30" rows="3" class="form-control" readonly>{{$project->description}}</textarea>

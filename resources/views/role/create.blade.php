@@ -1,6 +1,6 @@
 @extends('master.app')
 @section('title')
-    create role
+    create | role
 @endsection
 @section('content')
     <div class="d-flex flex-row-reverse">

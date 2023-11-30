@@ -24,5 +24,10 @@ class Department extends Model
         
         return $filteredUsers->get();
     }
+
+    public function employee() 
+    {
+        return $this->hasMany(Employee::class);
+    }
     
 }

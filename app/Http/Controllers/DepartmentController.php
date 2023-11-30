@@ -30,7 +30,7 @@ class DepartmentController extends Controller
             'remark' => 'required'
         ]);
         Department::create($request->all());
-        return redirect('department')->with("upload_success","Upload successfully!");
+        return redirect('department')->with("upload-success","Upload successfully!");
     }
    
     public function show(string $id)
@@ -57,14 +57,22 @@ class DepartmentController extends Controller
         $department = Department::findOrFail($id);
         $department->update($request->all());
 
-        return redirect('department')->with("update_success","Update successfully!");
+        return redirect('department')->with("update-success","Update successfully!");
     }
    
     public function destroy(string $id)
-    {
-      $department = Department::find($id);
-      $department->delete();
+    {  
+        $query = Department::query();
+        $department = $query->find($id);
+        // return $department->employee;
 
-      return back()->with('delete','Delete Successfully');
+        if(count($department->employee)){
+            return back()->with("no-delete","This department have employee can't delete");
+        }
+        
+      $department = $query->find($id);
+      $department->delete();
+        
+      return back()->with('delete-success','Delete Successfully');
     }
 }

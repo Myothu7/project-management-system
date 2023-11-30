@@ -1,9 +1,11 @@
 @extends('master.app')
-
+@section('title')
+    department
+@endsection
 @section('content')
 
     <div class="col-12">
-        <div class="d-flex justify-content-between align-items-center mt-3">
+        <div class="d-flex justify-content-between align-items-center my-3">
             <form class="d-flex" method="get">
                 <input type="search" class="form-control-sm search" placeholder="Search..." name="search_data">
                 <input type="submit" value="Search" class="btn btn-sm btn-primary ml-2">
@@ -13,50 +15,13 @@
                 <a href="{{route('department.create')}}" class="btn btn-sm btn-success"><i class="bi bi-plus"></i>Add New</a>
             @endcan
         </div>
+        @include('alert-box.alert')
     </div>
     
     <div class="col-12">
-          {{-- department upload success alert --}}
-        @if(session("upload_success"))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('upload_success')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-      @endif
-         {{-- department delete success alert --}}
-        @if(session("delete"))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                {{ session('delete')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-
-          {{-- department delete success alert --}}
-        @if(session("no-delete"))
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                {{ session('no-delete')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-        
-        {{-- department update success alert --}}    
-        @if(session("update_success"))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('update_success')}}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-        <div class="card mt-3">
+        <div class="card">
             <div class="card-header">
-                    <h5>Department List</h5>
+                    <h5>All Departments</h5>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped">

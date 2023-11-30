@@ -1,6 +1,6 @@
 @extends('master.app')
 @section('title')
-    update role
+    edit | permission
 @endsection
 @section('content')
     <div class="d-flex flex-row-reverse">

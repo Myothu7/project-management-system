@@ -1,6 +1,6 @@
 @extends('master.app')
 @section('title')
-    edit role
+    edit | role
 @endsection
 
 @section('content')

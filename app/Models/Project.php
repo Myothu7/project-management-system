@@ -9,5 +9,12 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','description','status','version'];
+    protected $fillable = ['name','description'];
+
+    public function versions()
+    {
+        return $this->hasMany(Version::class);
+    }
+    
+    
 }

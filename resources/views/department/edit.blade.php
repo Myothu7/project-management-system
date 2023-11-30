@@ -1,5 +1,7 @@
 @extends('master.app')
-
+@section('title')
+    edit | department
+@endsection
 @section('content')
     <div class="col-12">
         <nav aria-label="breadcrumb">

@@ -1,6 +1,6 @@
 @extends('master.app')
 @section('title')
-    add|user
+    add | employee
 @endsection
 @section('content')
 <div class="row">
@@ -50,6 +50,7 @@
                         <div class="mb-3 col-lg-6">
                             <label for="">Departmet</label>
                             <select name="department_id" id="" class="form-control">
+                                    <option value="" hidden>--select option--</option>
                                 @foreach ($departments as $department)
                                     <option value="{{$department->id}}">{{$department->name}}</option>
                                 @endforeach 

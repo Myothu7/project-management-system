@@ -1,48 +1,19 @@
 @extends('master.app')
 
 @section('title')
-    Role
+    permission
 @endsection
 
 @section('content')
-
-    <div class="d-flex flex-row-reverse">
-        @can('role-create')
-            <a href="{{route('permissions.create')}}" class="btn btn-sm btn-success mt-3"><i class="bi bi-plus"></i>Add New</a>
-        @endcan
+    <div class="col-12">
+        <div class="d-flex flex-row-reverse my-3">
+            @can('role-create')
+                <a href="{{route('permissions.create')}}" class="btn btn-sm btn-success"><i class="bi bi-plus"></i>Add New</a>
+            @endcan
+        </div>
+        @include('alert-box.alert')
     </div>
-
-     {{-- upload success alert --}}
-    @if(session("upload-success"))
-        <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-            {{ session('upload-success')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-
-     {{-- upload success alert --}}
-    @if(session("update-success"))
-        <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
-            {{ session('update-success')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-
-      {{-- delete success alert --}}
-    @if(session("delete-success"))
-        <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
-            {{ session('delete-success')}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-
-    <div class="card mt-3">
+    <div class="card">
         <div class="card-header">
             <div class="card-title">
                 <h5>All Permissions</h5>

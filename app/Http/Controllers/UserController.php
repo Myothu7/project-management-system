@@ -26,7 +26,6 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::where('user_type','=','admin')->paginate(10);
-
         $position = [];
         foreach($users as $user){
             foreach($user->getRoleNames() as $role){

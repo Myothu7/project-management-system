@@ -1,6 +1,6 @@
 @extends('master.app')
 @section('title')
-    add|user
+    detail | employee
 @endsection
 @section('content')
 <div class="row">

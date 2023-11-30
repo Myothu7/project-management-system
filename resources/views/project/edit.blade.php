@@ -1,6 +1,6 @@
 @extends('master.app')
 @section('title')
-    add|project
+    edit | project
 @endsection
 @section('content')
 <div class="row">
@@ -43,10 +43,6 @@
                         </div> 
                     </div>
                     <div class="mb-3 d-lg-flex col-12">
-                        <div class="mb-3 col-lg-6">
-                            <label for="">Version</label>
-                            <input type="text" name="version" class="form-control" required value="{{$project->version}}">
-                        </div>
                         <div class="mb-3 col-lg-6">
                             <label for="">Description</label>
                             <textarea name="description" id="" cols="30" rows="3" class="form-control" required>{{$project->description}}</textarea>

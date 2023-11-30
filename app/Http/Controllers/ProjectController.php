@@ -15,11 +15,11 @@ class ProjectController extends Controller
     public function index(Request $request)
     {
         $query = Project::query();
+        // return $query->versions();
         $find = $request->search_data;
         if($find){
             $query = Project::where('name','like','%'.$find.'%')
-                                ->orWhere('description','like','%'.$find."%")
-                                ->orWhere('version','like','%'.$find.'%');
+                                ->orWhere('description','like','%'.$find."%");
         }
         $projects = $query->get();
         return view('project.index', ['projects'=>$projects]);

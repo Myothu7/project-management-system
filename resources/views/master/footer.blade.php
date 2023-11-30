@@ -39,6 +39,9 @@
 <script src="{{asset('dist/js/adminlte.js')}}"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+
+    let modal = document.querySelector('#exampleModal');
+    // console.log(modal.style.display = 'block');
     $(document).ready(function () {
         // Check/Uncheck all checkboxes when "checkAll" is clicked
         $('#checkAll').click(function () {

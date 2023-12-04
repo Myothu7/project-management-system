@@ -12,13 +12,15 @@
                     <form action="{{route('version.store')}}" method="post">
                         @csrf
                      <input type="hidden" value="{{$project->id}}" name="project_id">   
+                     
                      <div class="mb-3">
                         <label for="">version number</label>
                         <input type="text" class="form-control"  name="version_number" required>
                     </div> 
                     <div class="mb-3">
                         <label for="">Departments</label>
-                        <select name="department_id[]" id="" multiple class="form-control">
+                        <br>
+                        <select  class="js-example-basic-multiple" name="department_id[]" multiple="mutiple">
                             @foreach ($departments as $department)
                                 <option value="{{$department->id}}">{{$department->name}}</option>
                             @endforeach

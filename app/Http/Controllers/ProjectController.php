@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ProjectController extends Controller
 {
@@ -14,14 +16,31 @@ class ProjectController extends Controller
 
     public function index(Request $request)
     {
-        $query = Project::query();
-        // return $query->versions();
-        $find = $request->search_data;
-        if($find){
-            $query = Project::where('name','like','%'.$find.'%')
-                                ->orWhere('description','like','%'.$find."%");
-        }
-        $projects = $query->get();
+        $auth = Auth::user();
+        $projects = Project::
+                    join('project_permissions','projects.id','=','project_permissions.project_id')
+                    ->where('user_id','=',$auth->id)
+                    ->get();
+                    
+        // return $projects;            
+        // $query = Project::query();
+        // $find = $request->search_data;
+        // if($find){
+        //     $projects = Project::where('projects.name','like','%'.$find.'%')
+        //                         ->orWhere('projects.description','like','%'.$find."%")
+        //                         ->join('versions','projects.id','=','versions.project_id')
+        //                   ->join('tasks','versions.id','=','tasks.version_id')
+        //                   ->where('tasks.user_id','=',$auth->id) 
+        //                   ->get('projects.*')
+        //                   ->unique('id') ;
+        //     return view('project.index', ['projects'=>$projects]);
+        // }
+        // $projects = $query->join('versions','projects.id','=','versions.project_id')
+        //                   ->join('tasks','versions.id','=','tasks.version_id')
+        //                   ->where('tasks.user_id','=',$auth->id) 
+        //                   ->get('projects.*')
+        //                   ->unique('id') ;
+
         return view('project.index', ['projects'=>$projects]);
     }
 

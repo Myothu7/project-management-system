@@ -16,11 +16,10 @@
                 </div>
             </div>
           </div>
-          </div>       
-        
+        </div>       
     </div>
   <!-- /.content-wrapper -->
-
-  @include('master.main_footer')
-
-  @include('master.footer')
+@include('master.footer')
+@include('master.js')
+</body>
+</html>

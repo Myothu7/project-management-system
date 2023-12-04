@@ -6,6 +6,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectPermissionController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,7 @@ Route::resource('projects',ProjectController::class);
 Route::resource('version',VersionController::class);
 Route::resource('tasks',TaskController::class);
 Route::resource('child_tasks',ChildTaskController::class);
+Route::resource('project_permission', ProjectPermissionController::class);
 
 Route::get('test',function(){
     return view('test');

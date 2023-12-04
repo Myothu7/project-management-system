@@ -13,28 +13,28 @@
         </div>
 
         @include('alert-box.alert')
-    </div>    
-       
-        <div class="card">
-            <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h5>All Versions ( {{$project->name}} )</h5>
-                </div>    
-            </div>
-                <div class="card-body">
-                    <table class="table table-bordered table-sm">
-                        <thead>
-                            <tr><th>ID</th><th>Name</th><th>Departments PICs </th><th>Remark</th><th>Action</th></tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($version as $v)
-                            <form action="{{route('tasks.index')}}" method="get">
-                                <tr>
-                                    <td>{{$v->id}}
-                                        <input type="hidden" name="project_id" value="{{$project->id}}">
-                                    </td>
-                                    <td>v-{{$v->version_number}}
-                                        <input type="hidden" name="version_id" value="{{$v->id}}">
+    </div> 
+        
+    <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <h5>All Versions ( {{$project->name}} )</h5>
+            </div>    
+        </div>
+            <div class="card-body">
+                <table class="table table-bordered table-sm">
+                    <thead>
+                        <tr><th>ID</th><th>Name</th><th>Departments PICs </th><th>Remark</th><th>Action</th></tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($version as $v)
+                        <form action="{{route('tasks.index')}}" method="get">
+                            <tr>
+                                <td>{{$v->id}}
+                                    <input type="hidden" name="project_id" value="{{$project->id}}">
+                                </td>
+                                <td>v-{{$v->version_number}}
+                                    <input type="hidden" name="version_id" value="{{$v->id}}">
                                     </td>
                                     <td>
                                         <ol class="m-0">

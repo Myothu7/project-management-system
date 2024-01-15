@@ -20,7 +20,7 @@
                     <div class="mb-3">
                         <label for="">Departments</label>
                         <br>
-                        <select  class="js-example-basic-multiple" name="department_id[]" multiple="mutiple">
+                        <select  class="form-control" name="department_id[]" multiple="mutiple">
                             @foreach ($departments as $department)
                                 <option value="{{$department->id}}">{{$department->name}}</option>
                             @endforeach
